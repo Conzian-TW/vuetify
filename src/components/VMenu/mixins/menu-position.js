@@ -18,8 +18,8 @@ export default {
         scrollTop = this.$refs.content.scrollHeight
       } else if (this.selectedIndex > this.startIndex) {
         scrollTop = (
-          (this.selectedIndex * (this.defaultOffset * 6)) -
-          (this.defaultOffset * 7)
+          (this.selectedIndex * (this.defaultOffset * 3)) -
+          (this.defaultOffset * 4)
         )
       }
 
