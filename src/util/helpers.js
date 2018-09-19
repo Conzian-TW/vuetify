@@ -20,6 +20,10 @@ export function createSimpleTransition (name, origin = 'top center 0', mode) {
     functional: true,
 
     props: {
+      group: {
+        type: Boolean,
+        default: false
+      },
       origin: {
         type: String,
         default: origin
@@ -27,6 +31,7 @@ export function createSimpleTransition (name, origin = 'top center 0', mode) {
     },
 
     render (h, context) {
+      const tag = `transition${context.props.group ? '-group' : ''}`
       context.data = context.data || {}
       context.data.props = { name }
       context.data.on = context.data.on || {}
@@ -41,7 +46,7 @@ export function createSimpleTransition (name, origin = 'top center 0', mode) {
         el.style.webkitTransformOrigin = context.props.origin
       }
 
-      return h('transition', context.data, context.children)
+      return h(tag, context.data, context.children)
     }
   }
 }
