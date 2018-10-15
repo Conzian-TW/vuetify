@@ -19,6 +19,7 @@ export default {
     contentClass: String,
     deletableChips: Boolean,
     dense: Boolean,
+    disabledTips: String,
     editable: Boolean,
     hideSelected: Boolean,
     items: {
@@ -53,12 +54,15 @@ export default {
     multiLine: Boolean,
     openOnClear: Boolean,
     overflow: Boolean,
+    offsetTop: Number,
+    nudgeLeft: Number,
     returnObject: Boolean,
     searchInput: {
       default: null
     },
     segmented: Boolean,
     singleLine: Boolean,
+    suffix: String,
     tags: Boolean,
     valueComparator: {
       type: Function,

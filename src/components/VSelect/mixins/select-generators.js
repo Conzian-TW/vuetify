@@ -27,6 +27,7 @@ import {
 export default {
   methods: {
     genMenu () {
+      console.log('select', this.nudgeLeft)
       const data = {
         ref: 'menu',
         props: {
@@ -40,7 +41,10 @@ export default {
           disabled: this.disabled,
           light: this.light,
           maxHeight: this.maxHeight,
-          nudgeTop: this.nudgeTop,
+          // offsetTop is a custom prop by Jun.
+          // Because menu nudgeTop is not working.
+          nudgeTop: (this.nudgeTop + this.offsetTop),
+          nudgeLeft: this.nudgeLeft,
           offsetY: this.shouldOffset,
           offsetOverflow: this.isAutocomplete,
           openOnClick: false,
@@ -218,7 +222,7 @@ export default {
           'input-group__selections__comma--active': index === this.selectedIndex
         },
         key: JSON.stringify(this.getValue(item)) // Item may be an object
-      }, `${this.getText(item)}${last ? '' : ', '}`)
+      }, `${this.getText(item)}${last ? '' : ', '}${(this.suffix != null) ? this.suffix : ''}`)
     },
     genList () {
       const children = this.menuItems.map(o => {
@@ -281,6 +285,23 @@ export default {
             if (disabled) return
 
             this.selectItem(item)
+          },
+          mouseenter: e => {
+            if (e.target.classList.contains('text--disabled') &&
+                this.disabledTips != null) {
+              /* let index = this.menuItems.findIndex(v => {
+                return v === item
+              })
+              console.log(index)
+              this.disabledTipsShow[index] = true */
+              e.target.classList.add('disabled-tips-active')
+            }
+          },
+          mouseleave: e => {
+            if (e.target.classList.contains('text--disabled') &&
+                this.disabledTips != null) {
+              e.target.classList.remove('disabled-tips-active')
+            }
           }
         },
         props: {
@@ -303,8 +324,29 @@ export default {
           : tile
       }
 
+      if (this.disabledTips != null && this.disabledTips !== '') {
+        return this.$createElement(VListTile, data,
+          [
+            this.genAction(item, active),
+            this.genContent(item),
+            this.$createElement('span',
+              {class: ['select-disabled-tips-item']},
+              [
+                this.$createElement('span',
+                  {class: ['select-disabled-tips-content']},
+                  this.disabledTips
+                )
+              ]
+            )
+          ]
+        )
+      }
+
       return this.$createElement(VListTile, data,
-        [this.genAction(item, active), this.genContent(item)]
+        [
+          this.genAction(item, active),
+          this.genContent(item)
+        ]
       )
     },
     genAction (item, active) {
