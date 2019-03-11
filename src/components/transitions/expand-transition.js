@@ -4,7 +4,6 @@ export default function (expandedParentClass = '') {
   return {
     enter (el, done) {
       el._parent = el.parentNode
-
       addOnceEventListener(el, 'transitionend', done)
 
       // Get height that is to be scrolled
@@ -12,7 +11,7 @@ export default function (expandedParentClass = '') {
       el.style.height = 0
       el.style.display = 'block'
       expandedParentClass && el._parent.classList.add(expandedParentClass)
-
+      console.log('123', el.scrollHeight)
       setTimeout(() => (el.style.height = `${el.scrollHeight}px`), 100)
     },
 

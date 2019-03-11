@@ -52,7 +52,6 @@ export default {
         this.attach === true || // If bound to a boolean (<v-menu :attach="true">)
         this.attach === 'attach' // If bound as boolean prop in pug (v-menu(attach))
       ) return
-
       let target
       if (this.attach === false) {
         // Default, detach to app

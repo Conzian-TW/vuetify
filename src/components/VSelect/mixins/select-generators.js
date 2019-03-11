@@ -27,7 +27,6 @@ import {
 export default {
   methods: {
     genMenu () {
-      console.log('select', this.nudgeLeft)
       const data = {
         ref: 'menu',
         props: {

@@ -66,7 +66,8 @@ export default {
       menuIsActive: false,
       selectedIndex: -1,
       selectedItems: [],
-      shouldBreak: false
+      shouldBreak: false,
+      disabledTipsShow: []
     }
   },
 

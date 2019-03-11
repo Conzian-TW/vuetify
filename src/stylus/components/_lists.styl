@@ -135,8 +135,10 @@ theme(list, "list")
           color: inherit
 
     &--disabled
-      opacity: 0.4 !important
       pointer-events: none !important
+
+      & .list__tile_content
+        opacity: 0.4 !important
 
     &--avatar
       height: $list-item-avatar-single-height
