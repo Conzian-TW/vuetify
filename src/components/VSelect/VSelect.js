@@ -67,7 +67,7 @@ export default {
       selectedIndex: -1,
       selectedItems: [],
       shouldBreak: false,
-      disabledTipsShow: []
+      disabledTipsVisible: false
     }
   },
 
@@ -79,6 +79,10 @@ export default {
     // Evaluate the selected items immediately
     // to avoid a unnecessary label transition
     this.genSelectedItems()
+
+    let el = this.$refs['disabled-tips-item']
+
+    this.$root.$el.insertBefore(el, this.$root.$el.firstChild)
 
     this.content = this.$refs.menu.$refs.content
   },
@@ -306,7 +310,8 @@ export default {
 
     return this.genInputGroup([
       this.genSelectionsAndSearch(),
-      this.genMenu()
+      this.genMenu(),
+      this.genDisabledTips()
     ], data, this.toggleMenu)
   }
 }

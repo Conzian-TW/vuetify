@@ -181,8 +181,9 @@ theme(selects, "input-group--select")
   position: absolute
   top: -16px
   left: 0
-  width: 100%
+  width: auto
   justify-content: center
+  transform: translateX(-50%)
 
   & .select-disabled-tips-content
     position: relative
@@ -206,8 +207,7 @@ theme(selects, "input-group--select")
       margin-bottom: -4px
 
 
-.disabled-tips-active
-  position: relative
-
-  & .select-disabled-tips-item
-    display: flex
+.disabled-tips-active.select-disabled-tips-item
+  position: fixed
+  display: flex
+    

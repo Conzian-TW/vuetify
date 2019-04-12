@@ -288,18 +288,24 @@ export default {
           mouseenter: e => {
             if (e.target.classList.contains('text--disabled') &&
                 this.disabledTips != null) {
-              /* let index = this.menuItems.findIndex(v => {
-                return v === item
-              })
-              console.log(index)
-              this.disabledTipsShow[index] = true */
-              e.target.classList.add('disabled-tips-active')
+              let rect = e.target.getBoundingClientRect()
+              let positionTop = rect.top - 16
+              let positionLeft = rect.left
+              let leftOffset = rect.width / 2
+              let zIndex = this.$refs.menu.activeZIndex + 2
+              this.disabledTipsVisible = true
+              let disabledTipsNode = this.$refs['disabled-tips-item']
+
+              disabledTipsNode.style.position = 'fixed'
+              disabledTipsNode.style.top = positionTop + 'px'
+              disabledTipsNode.style.left = (positionLeft + leftOffset) + 'px'
+              disabledTipsNode.style.zIndex = zIndex
             }
           },
           mouseleave: e => {
             if (e.target.classList.contains('text--disabled') &&
                 this.disabledTips != null) {
-              e.target.classList.remove('disabled-tips-active')
+              this.disabledTipsVisible = false
             }
           }
         },
@@ -321,24 +327,6 @@ export default {
         return this.needsTile(tile)
           ? this.$createElement(VListTile, data, [tile])
           : tile
-      }
-
-      if (this.disabledTips != null && this.disabledTips !== '') {
-        return this.$createElement(VListTile, data,
-          [
-            this.genAction(item, active),
-            this.genContent(item),
-            this.$createElement('span',
-              {class: ['select-disabled-tips-item']},
-              [
-                this.$createElement('span',
-                  {class: ['select-disabled-tips-content']},
-                  this.disabledTips
-                )
-              ]
-            )
-          ]
-        )
       }
 
       return this.$createElement(VListTile, data,
@@ -379,6 +367,23 @@ export default {
             innerHTML: this.genFiltered(text)
           }
         })]
+      )
+    },
+    genDisabledTips () {
+      return this.$createElement('span',
+        {
+          class: {
+            'select-disabled-tips-item': true,
+            'disabled-tips-active': this.disabledTipsVisible
+          },
+          ref: 'disabled-tips-item'
+        },
+        [
+          this.$createElement('span',
+            { class: ['select-disabled-tips-content'] },
+            this.disabledTips
+          )
+        ]
       )
     }
   }
