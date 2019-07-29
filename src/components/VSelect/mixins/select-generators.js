@@ -292,7 +292,7 @@ export default {
               let positionTop = rect.top - 16
               let positionLeft = rect.left
               let leftOffset = rect.width / 2
-              let zIndex = this.$refs.menu.activeZIndex + 2
+              let zIndex = Math.max(this.$refs.menu.activeZIndex, 300) + 2
               this.disabledTipsVisible = true
               let disabledTipsNode = this.$refs['disabled-tips-item']
 
