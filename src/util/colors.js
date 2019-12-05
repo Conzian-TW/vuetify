@@ -315,6 +315,19 @@ const shades = Object.freeze({
   transparent: 'transparent'
 })
 
+const cznBlack = Object.freeze({
+  'black-87': '#212121',
+  'black-54': '#757575',
+  'black-38': '#9e9e9e',
+  'black-12': '#e0e0e0'
+})
+
+const cznWhite = Object.freeze({
+  'white-70': '#ffffff',
+  'white-50': '#b3b3b3',
+  'white-12': '#1f1f1f'
+})
+
 export default Object.freeze({
   red,
   pink,
@@ -335,5 +348,7 @@ export default Object.freeze({
   brown,
   blueGrey,
   grey,
-  shades
+  shades,
+  cznBlack,
+  cznWhite
 })
