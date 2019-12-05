@@ -33,6 +33,7 @@ export default {
     depressed: Boolean,
     fab: Boolean,
     flat: Boolean,
+    flatBackground: Boolean,
     icon: Boolean,
     large: Boolean,
     loading: Boolean,
@@ -64,6 +65,7 @@ export default {
         'btn--bottom': this.bottom,
         'btn--disabled': this.disabled,
         'btn--flat': this.flat,
+        'btn--flat-background': this.flatBackground,
         'btn--floating': this.fab,
         'btn--fixed': this.fixed,
         'btn--hover': this.hover,
@@ -72,7 +74,13 @@ export default {
         'btn--left': this.left,
         'btn--loader': this.loading,
         'btn--outline': this.outline,
-        'btn--depressed': (this.depressed && !this.flat) || this.outline,
+        'btn--depressed': (
+          (
+            this.depressed &&
+            !this.flat &&
+            !this.flatBackground
+          ) || this.outline
+        ),
         'btn--right': this.right,
         'btn--round': this.round,
         'btn--router': this.to,
@@ -81,7 +89,7 @@ export default {
         ...this.themeClasses
       }
 
-      return (!this.outline && !this.flat)
+      return (!this.outline && !this.flat && !this.flatBackground)
         ? this.addBackgroundColorClassChecks(classes)
         : this.addTextColorClassChecks(classes)
     }

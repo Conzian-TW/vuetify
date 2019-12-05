@@ -6,15 +6,16 @@ button($material)
   color: $material.text.primary
 
   &.btn--disabled
-    color: $material.buttons.disabled !important
+    &.btn--flat-background .btn__content
+      opacity: .34
 
-    .icon
-      color: $material.buttons.disabled !important
+      &:before
+        opacity: .24
 
-    &:not(.btn--icon):not(.btn--flat)
-      background-color: $material.buttons.focused !important
+    &:not(.btn--flat-background)
+      opacity: .34
 
-  &:not(.btn--icon):not(.btn--flat)
+  &:not(.btn--icon):not(.btn--flat):not(.btn--flat-background)
     background-color: $material.app-bar
 
 theme(button, "btn")
@@ -98,9 +99,19 @@ theme(button, "btn")
 
 /** Types */
 .btn
-  &--flat
+  &--flat,
+  &--flat-background
     background-color: transparent !important
     box-shadow: none !important
+
+  &--flat-background
+    .btn__content:before
+      background-color: currentColor !important
+      opacity: 0.08
+
+    .btn__content:hover
+      &:before
+        opacity: 0.16
 
   &:not(.btn--depressed)
     will-change: box-shadow
