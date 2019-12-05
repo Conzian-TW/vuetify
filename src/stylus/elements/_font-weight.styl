@@ -1,0 +1,6 @@
+generate-font-weight(font_weight_name, font_weight_value)
+  .font-weight--{font_weight_name}
+    font-weight: font_weight_value
+
+for font_weight_name, font_weight_value in $font-weights
+  generate-font-weight(font_weight_name, font_weight_value)
