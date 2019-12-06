@@ -24,3 +24,7 @@ npm update @conzian/vuetify
 
 cat package.json | grep @conzian/vuetify
 ```
+
+## Contributing
+Please read documentation on vuetify website.
+https://v1.vuetifyjs.com/en/getting-started/contributing
