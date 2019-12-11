@@ -64,6 +64,9 @@ export const genBaseColor = (name, value) => {
 .${name}--text {
   color: ${value} !important;
 }
+.${name}--border {
+  border-color: ${value} !important;
+}
 .${name}--text input,
 .${name}--text textarea {
   caret-color: ${value} !important;

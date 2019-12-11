@@ -6,6 +6,9 @@ global-color(color_name, color_value)
   .{color_name}--text
     color color_value !important
 
+  .{color_name}--border
+    border-color: color_value !important
+
 global-color-accent(color_name, color_value)
   .{color_name}
     &.{color_type}
@@ -15,3 +18,7 @@ global-color-accent(color_name, color_value)
   .{color_name}--text
     &.text--{color_type}
       color: color_value !important
+
+  .{color_name}--border
+    &.border--{color_type}
+      border-color: color_value !important
