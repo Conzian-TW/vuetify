@@ -17,9 +17,14 @@ selection-control($material)
     .input-group__input
       color: $material.text.disabled
 
-      .icon--radio,
-      .icon--checkbox
-        color: inherit
+  &.input-group--disabled.checkbox,
+  &.input-group--disabled.radio
+    .input-group__input
+      color: inherit !important
+
+    .icon--radio,
+    .icon--checkbox
+      opacity: 0.38
 
 theme(selection-control, "input-group--selection-controls")
 
